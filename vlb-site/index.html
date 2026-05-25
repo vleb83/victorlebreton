@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Victor Le Breton — Finance & Advisory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #08101f;
+      --navy-mid: #0f1c30;
+      --navy-light: #162336;
+      --gold: #c9a84c;
+      --gold-light: #e2c475;
+      --off-white: #f0ede8;
+      --muted: #8a95a3;
+      --border: rgba(201,168,76,0.18);
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Playfair Display', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--off-white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 5vw;
+      background: rgba(8,16,31,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: all .3s;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--gold);
+      letter-spacing: .04em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      padding: .45rem 1.1rem;
+      border-radius: 3px;
+      transition: background .25s, color .25s !important;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--navy) !important; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,.07) 0%, transparent 65%),
+                  radial-gradient(ellipse at 10% 80%, rgba(21,57,105,.35) 0%, transparent 60%);
+    }
+    .hero-grid-overlay {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .75rem; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid var(--border);
+      padding: .35rem .9rem; border-radius: 2px; margin-bottom: 2rem;
+    }
+    .hero-tag::before {
+      content: ''; display: block; width: 6px; height: 6px;
+      background: var(--gold); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(.7); }
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      font-weight: 600;
+      line-height: 1.12;
+      color: var(--off-white);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 520px; margin-bottom: 2.8rem; font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: .85rem 2rem;
+      font-weight: 600; font-size: .9rem; letter-spacing: .04em;
+      border: none; border-radius: 3px; cursor: pointer;
+      text-decoration: none; transition: background .25s, transform .2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--off-white);
+      padding: .85rem 2rem;
+      font-weight: 500; font-size: .9rem; letter-spacing: .04em;
+      border: 1px solid rgba(240,237,232,.2); border-radius: 3px; cursor: pointer;
+      text-decoration: none; transition: border-color .25s, transform .2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      padding-top: 2.5rem; border-top: 1px solid var(--border);
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem; color: var(--gold); font-weight: 600;
+    }
+    .hero-stat-label { font-size: .78rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 7rem 5vw; }
+    .section-tag {
+      font-size: .72rem; font-weight: 600; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: .9rem; display: block;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 600; line-height: 1.2;
+      color: var(--off-white); margin-bottom: 1.2rem;
+    }
+    .section-sub { font-size: 1rem; color: var(--muted); max-width: 500px; font-weight: 300; }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--navy-mid); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; margin-top: 4rem;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-placeholder {
+      width: 100%; aspect-ratio: 4/5;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: .85rem; letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .about-img-badge {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      background: var(--gold); color: var(--navy);
+      padding: 1.2rem 1.5rem; border-radius: 3px;
+      font-weight: 700; font-size: .85rem; line-height: 1.3;
+      text-align: center;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-weight: 300; }
+    .about-text p strong { color: var(--off-white); font-weight: 500; }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; }
+    .skill-tag {
+      font-size: .75rem; font-weight: 500; letter-spacing: .06em;
+      padding: .35rem .85rem; border-radius: 2px;
+      border: 1px solid var(--border); color: var(--muted);
+      text-transform: uppercase; transition: all .2s;
+    }
+    .skill-tag:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--navy); }
+    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); border: 1px solid var(--border); }
+    .service-card {
+      background: var(--navy);
+      padding: 2.5rem;
+      transition: background .3s;
+      cursor: default;
+    }
+    .service-card:hover { background: var(--navy-light); }
+    .service-num {
+      font-size: .72rem; font-weight: 600; color: var(--gold);
+      letter-spacing: .1em; margin-bottom: 1.5rem; display: block;
+    }
+    .service-icon {
+      width: 44px; height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; font-size: 1.2rem;
+      transition: border-color .3s;
+    }
+    .service-card:hover .service-icon { border-color: var(--gold); }
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem; color: var(--off-white);
+      margin-bottom: .8rem;
+    }
+    .service-desc { font-size: .88rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
+
+    /* ─── CASE STUDIES ─── */
+    #cases { background: var(--navy-mid); }
+    .cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 4rem; }
+    .case-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 2.5rem;
+      transition: transform .25s, border-color .25s;
+      cursor: default;
+    }
+    .case-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+    .case-tag {
+      font-size: .7rem; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid var(--border); padding: .25rem .7rem;
+      border-radius: 2px; display: inline-block; margin-bottom: 1.5rem;
+    }
+    .case-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem; color: var(--off-white); margin-bottom: .8rem;
+    }
+    .case-desc { font-size: .88rem; color: var(--muted); font-weight: 300; margin-bottom: 1.8rem; }
+    .case-metrics { display: flex; gap: 2rem; }
+    .case-metric-val { font-size: 1.4rem; font-weight: 700; color: var(--gold); }
+    .case-metric-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .case-placeholder {
+      background: var(--navy-light);
+      border: 1px dashed rgba(201,168,76,.25);
+      border-radius: 4px; padding: 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: .85rem;
+      letter-spacing: .06em; text-transform: uppercase;
+      grid-column: span 2; min-height: 160px;
+    }
+
+    /* ─── PRICING ─── */
+    #pricing { background: var(--navy); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+    .pricing-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 2.5rem;
+      transition: transform .25s, border-color .25s;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: var(--gold);
+      background: linear-gradient(160deg, var(--navy-light), rgba(201,168,76,.06));
+    }
+    .pricing-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: var(--navy);
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; padding: .3rem .9rem; border-radius: 2px;
+    }
+    .pricing-plan { font-size: .75rem; font-weight: 600; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1rem; }
+    .pricing-price { font-family: var(--font-display); font-size: 2.4rem; color: var(--off-white); margin-bottom: .3rem; }
+    .pricing-price span { font-size: .9rem; color: var(--muted); font-family: var(--font-body); }
+    .pricing-desc { font-size: .85rem; color: var(--muted); margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .pricing-features { list-style: none; margin-bottom: 2.5rem; }
+    .pricing-features li {
+      font-size: .88rem; color: var(--muted); padding: .5rem 0;
+      display: flex; align-items: center; gap: .7rem;
+    }
+    .pricing-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .btn-outline {
+      display: block; text-align: center;
+      border: 1px solid var(--border); color: var(--off-white);
+      padding: .75rem; border-radius: 3px; text-decoration: none;
+      font-size: .88rem; font-weight: 500; letter-spacing: .04em;
+      transition: all .25s;
+    }
+    .btn-outline:hover, .pricing-card.featured .btn-outline { border-color: var(--gold); background: var(--gold); color: var(--navy); }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--navy-mid); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; margin-top: 4rem; align-items: start; }
+    .contact-info-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2rem; }
+    .contact-info-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .contact-info-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .2rem; }
+    .contact-info-val { font-size: .95rem; color: var(--off-white); }
+    .calendly-placeholder {
+      background: var(--navy-light); border: 1px dashed rgba(201,168,76,.25);
+      border-radius: 4px; padding: 2rem; text-align: center;
+      color: var(--muted); font-size: .85rem; margin-top: 2rem;
+      letter-spacing: .04em;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    label { font-size: .75rem; font-weight: 600; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: .45rem; }
+    input, textarea, select {
+      width: 100%; background: var(--navy-light);
+      border: 1px solid var(--border); border-radius: 3px;
+      color: var(--off-white); font-family: var(--font-body); font-size: .9rem;
+      padding: .8rem 1rem; outline: none;
+      transition: border-color .25s;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--gold); }
+    textarea { resize: vertical; min-height: 120px; }
+    select option { background: var(--navy-light); }
+    .form-submit {
+      width: 100%; background: var(--gold); color: var(--navy);
+      font-weight: 700; font-size: .9rem; letter-spacing: .06em;
+      border: none; border-radius: 3px; padding: 1rem;
+      cursor: pointer; margin-top: .5rem;
+      transition: background .25s, transform .2s;
+    }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy); border-top: 1px solid var(--border);
+      padding: 2.5rem 5vw;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-logo { font-family: var(--font-display); color: var(--gold); font-size: 1rem; }
+    .footer-copy { font-size: .8rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: .8rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+    .reveal-delay-5 { transition-delay: .5s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid, .cases-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .case-placeholder { grid-column: span 1; }
+      .nav-links { display: none; }
+      .hero-stats { gap: 2rem; }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">VICTOR LE BRETON</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for new mandates</div>
+    <h1 class="hero-title">
+      Finance & Advisory<br/>for <em>ambitious</em><br/>ventures.
+    </h1>
+    <p class="hero-sub">
+      Investment memos, financial models &amp; due diligence — institutional-grade analysis for fintechs, advisory boutiques, family offices, and private investors who need the real work done.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a discovery call</a>
+      <a href="#cases" class="btn-secondary">View case studies</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">5+</div>
+        <div class="hero-stat-label">Years experience</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">€500M+</div>
+        <div class="hero-stat-label">Funds analysed</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">Continents served</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <span class="section-tag reveal">About</span>
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+      <img src="./picpro.png" alt="Victor Le Breton" style="width:80%;display:block;margin:0 auto;aspect-ratio:3/4;object-fit:contain;object-position:center;border-radius:4px;border:1px solid var(--border);background:#000;"/>
+      <div class="about-img-badge">Paris, France<br/>Available remotely</div>
+    </div>
+    <div class="about-text">
+      <h2 class="section-title reveal">Victor Le Breton</h2>
+      <p class="reveal reveal-delay-1">
+        I'm a <strong>Fund Management Analyst in a leading European asset management firm</strong>, where I've spent the past 5 years modelling real estate investment funds, steering acquisition and financing strategies, and leading investor committees on portfolios in the range of €500M. I know what institutional-grade finance looks like from the inside.
+      </p>
+      <p class="reveal reveal-delay-2">
+        In parallel, I've built nearly <strong>3 years of freelance experience</strong> working with clients across Europe, North America, and beyond — producing investment research, financial whitepapers, and advisory content for asset managers, advisory boutiques, and private investors. That mix of institutional rigour and entrepreneurial adaptability is what sets me apart.
+      </p>
+      <p class="reveal reveal-delay-3">
+        Whether you're an <strong>institutional player</strong> looking for a sharp analyst, or a <strong>private individual</strong> wanting clarity on your investments — I adapt to your world, speak your language, and deliver work that holds up to scrutiny.
+      </p>
+      <div class="skills-grid reveal reveal-delay-4">
+        <span class="skill-tag">Fund Management</span>
+        <span class="skill-tag">Real Estate Finance</span>
+        <span class="skill-tag">Financial Modelling</span>
+        <span class="skill-tag">ETF Strategy</span>
+        <span class="skill-tag">Investment Research</span>
+        <span class="skill-tag">FP&A</span>
+        <span class="skill-tag">Valuation</span>
+        <span class="skill-tag">Whitepaper Writing</span>
+        <span class="skill-tag">MSc Banking & Finance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <span class="section-tag reveal">Services</span>
+      <h2 class="section-title reveal">What I do</h2>
+    </div>
+    <p class="section-sub reveal">Tailored finance services for companies and individuals at every stage.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <div class="service-icon">📝</div>
+      <h3 class="service-title">Investment Memo</h3>
+      <p class="service-desc">Fund-grade one-pagers and full investment memos for sophisticated investors. I structure the thesis, the valuation rationale, and the risk framework — in the format that gets read by real decision-makers. From €400 (one-pager) to €1,800 (full memo).</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <div class="service-icon">📊</div>
+      <h3 class="service-title">Deep-Dive Company Analysis</h3>
+      <p class="service-desc">Institutional-grade equity analysis on listed or private companies. SOTP valuation, DCF, comps, macro overlay, and risk matrix — the same level of rigour used in asset management. Delivered in 3–5 days. From €800.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <div class="service-icon">📈</div>
+      <h3 class="service-title">Financial Model + Business Plan</h3>
+      <p class="service-desc">Bottom-up financial models built to withstand investor scrutiny. Revenue projections, scenario analysis, breakeven, and cash flow — structured for fundraising, bank financing, or internal decision-making. From €1,800.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <div class="service-icon">🎯</div>
+      <h3 class="service-title">Pitch Deck — Financial Narrative</h3>
+      <p class="service-desc">The numbers section of your pitch deck, done right. Market sizing (TAM/SAM/SOM), financial projections, unit economics, and use of funds — crafted to answer the questions investors actually ask. From €1,000.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">05</span>
+      <div class="service-icon">🏢</div>
+      <h3 class="service-title">Real Estate Due Diligence</h3>
+      <p class="service-desc">Buy-side financial due diligence on real estate assets and funds. Cash flow modelling, asset valuation, financing analysis, and risk assessment — with 5 years of institutional RE fund management behind every report. From €1,200.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">06</span>
+      <div class="service-icon">🔍</div>
+      <h3 class="service-title">Sector Market Report</h3>
+      <p class="service-desc">Research-grade market analysis for strategy, fundraising, or investment decisions. Competitive landscape, market sizing, key players, and financial benchmarks — delivered as a structured, client-ready document. From €700.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="cases">
+  <span class="section-tag reveal">Case Studies</span>
+  <h2 class="section-title reveal">Selected work</h2>
+  <p class="section-sub reveal">A selection of mandates — more available on request.</p>
+  <div class="cases-grid">
+    <div class="case-card reveal reveal-delay-1">
+      <span class="case-tag">Advisory Boutique · New York · Under NDA</span>
+      <h3 class="case-title">Project NED — Pre-financing Investment Due Diligence</h3>
+      <p class="case-desc">Engaged by a New York-based advisory boutique to lead a confidential pre-financing due diligence process for a high-growth target. The mandate involved multiple rounds of exchanges with the client team, deep-dive analysis of the target's financial structure, and the production of a comprehensive whitepaper — combining a DD checklist, a risk matrix, and a financial engineering framework covering capital structure, growth levers, and exit scenarios. Delivered under strict NDA; specific figures and entity names are withheld per confidentiality agreement.</p>
+      <div class="case-metrics">
+        <div>
+          <div class="case-metric-val">NDA</div>
+          <div class="case-metric-label">Confidential</div>
+        </div>
+        <div>
+          <div class="case-metric-val">NYC</div>
+          <div class="case-metric-label">Advisory Boutique</div>
+        </div>
+        <div>
+          <div class="case-metric-val">WP</div>
+          <div class="case-metric-label">Whitepaper</div>
+        </div>
+      </div>
+      <a href="./project-ned.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(201,168,76,.3);padding:.45rem 1rem;border-radius:3px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,.3)'">
+        📄 Read the whitepaper
+      </a>
+    </div>
+    <div class="case-card reveal reveal-delay-2">
+      <span class="case-tag">Private Client · Equity Research · 6-month Series</span>
+      <h3 class="case-title">Weekly Listed Equity Deep-Dives — Apollo, ASML, Estée Lauder & More</h3>
+      <p class="case-desc"><strong>Context:</strong> Retained by a sophisticated private investor seeking independent, institutional-grade equity research to build conviction on listed stock positions across sectors.<br/><br/><strong>Problem:</strong> Valuing complex, multi-business-line companies — from alternative asset managers to global consumer brands — requires tailored frameworks the client lacked the in-house capacity to build.<br/><br/><strong>Methodology:</strong></p>
+      <ul style="color:var(--muted);font-size:.88rem;font-weight:300;padding-left:1.2rem;margin:.6rem 0 1rem;line-height:1.9;">
+        <li>Sum-of-the-parts (SOTP) valuation & DCF on recurring fee streams</li>
+        <li>Comparable transactions & listed peers analysis</li>
+        <li>Macro overlay & sector-specific risk mapping</li>
+        <li>Sensitivity testing on key value drivers</li>
+        <li>Weekly memo format — actionable, concise, investment-ready</li>
+      </ul>
+      <p class="case-desc"><strong>Deliverables:</strong> 20+ deep-dive memos over 6 months — each including a valuation model, executive summary, and risk framework.<br/><strong>Impact:</strong> Client built informed positions with a clear investment thesis and structured risk management approach across each name.</p>
+      <div class="case-metrics" style="margin-top:1.2rem;">
+        <div>
+          <div class="case-metric-val">20+</div>
+          <div class="case-metric-label">Deep-dives</div>
+        </div>
+        <div>
+          <div class="case-metric-val">6 mo</div>
+          <div class="case-metric-label">Engagement</div>
+        </div>
+        <div>
+          <div class="case-metric-val">4+</div>
+          <div class="case-metric-label">Sectors</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;">
+        <a href="./apollo.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(201,168,76,.3);padding:.4rem .9rem;border-radius:3px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,.3)'">📄 Apollo $APO</a>
+        <a href="./asml.docx" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(201,168,76,.3);padding:.4rem .9rem;border-radius:3px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,.3)'">📄 ASML $ASML</a>
+        <a href="./estee-lauder.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(201,168,76,.3);padding:.4rem .9rem;border-radius:3px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,.3)'">📄 Estée Lauder $EL</a>
+        <a href="./starbucks.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(201,168,76,.3);padding:.4rem .9rem;border-radius:3px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,.3)'">📄 Starbucks $SBUX</a>
+      </div>
+    </div>
+    <div class="case-card reveal reveal-delay-3">
+      <span class="case-tag">PropTech Startup · From Scratch · Investment Memo</span>
+      <h3 class="case-title">RentWise — Investment Memo & Financial Structuring</h3>
+      <p class="case-desc"><strong>Context:</strong> Brought in as Financial Specialist on a PropTech startup building a property management platform for individual landlords in the Paris region. The mandate was to build the financial foundation of the company from the ground up — not just model numbers, but craft an investment-ready narrative for early-stage fundraising.<br/><br/><strong>Problem:</strong> The founding team had a strong operational vision but no structured financial framework — no market sizing, no revenue model formalisation, no projections, and no investor-facing financial story.<br/><br/><strong>Methodology:</strong></p>
+      <ul style="color:var(--muted);font-size:.88rem;font-weight:300;padding-left:1.2rem;margin:.6rem 0 1rem;line-height:1.9;">
+        <li>Bottom-up market sizing: TAM (€1B+), SAM (€311M), SOM (€31M) for the IDF rental market</li>
+        <li>Revenue model structuring: 4.2% management fee + agency fees + premium subscription tiers</li>
+        <li>Financial projections & breakeven analysis from pre-revenue to scale</li>
+        <li>KPI dashboard design: occupancy rates, payment delay metrics, LTV/CAC</li>
+        <li>Competitive landscape mapping vs. Flatlooker, Liberkeys, Blue</li>
+        <li>Full pitch deck financial narrative for seed fundraising</li>
+      </ul>
+      <p class="case-desc"><strong>Deliverables:</strong> Complete investor pitch deck (32 slides), financial model, market sizing memo, and KPI framework.<br/><strong>Impact:</strong> Structured a compelling, investor-ready financial story for a zero-to-one PropTech venture targeting a €31M serviceable market.</p>
+      <div class="case-metrics" style="margin-top:1.2rem;">
+        <div>
+          <div class="case-metric-val">€1B+</div>
+          <div class="case-metric-label">TAM (IDF)</div>
+        </div>
+        <div>
+          <div class="case-metric-val">Seed</div>
+          <div class="case-metric-label">Stage</div>
+        </div>
+        <div>
+          <div class="case-metric-val">0→1</div>
+          <div class="case-metric-label">From scratch</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;">
+        <a href="./rentwise.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(201,168,76,.3);padding:.4rem .9rem;border-radius:3px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,.3)'">📄 View pitch deck</a>
+      </div>
+    </div>
+    <div class="case-card reveal reveal-delay-4">
+      <span class="case-tag">Framework · Cross-industry · Methodology</span>
+      <h3 class="case-title">Cross-industry Financing Scenarios Framework</h3>
+      <p class="case-desc">Developed a reusable financing scenarios framework applicable across industries — from early-stage startups to mid-market companies preparing for international expansion. The methodology maps capital structure options (equity, debt, hybrid instruments, SPVs) against growth stage, risk profile, and exit horizon. Designed to be stress-tested, it has since been applied across multiple client mandates as a foundation for fundraising strategy and investor conversations.</p>
+      <div class="case-metrics">
+        <div>
+          <div class="case-metric-val">3+</div>
+          <div class="case-metric-label">Industries</div>
+        </div>
+        <div>
+          <div class="case-metric-val">Reusable</div>
+          <div class="case-metric-label">Methodology</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-card reveal reveal-delay-3">
+      <span class="case-tag">Individual · ETF Strategy</span>
+      <h3 class="case-title">Portfolio Restructuring — High-net-worth Individual</h3>
+      <p class="case-desc">Restructured a portfolio from high-fee active funds to a diversified ETF allocation, reducing costs by 80bps and improving expected risk-adjusted returns over the long term.</p>
+      <div class="case-metrics">
+        <div>
+          <div class="case-metric-val">−80bps</div>
+          <div class="case-metric-label">Cost saved</div>
+        </div>
+        <div>
+          <div class="case-metric-val">HNWI</div>
+          <div class="case-metric-label">Client profile</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-card reveal reveal-delay-4">
+      <span class="case-tag">Startup · Fractional CFO</span>
+      <h3 class="case-title">SaaS Scale-up — Series A Preparation</h3>
+      <p class="case-desc">Rebuilt the financial model and investor narrative for a B2B SaaS raising its Series A. Led data room preparation and supported 6 months of investor conversations.</p>
+      <div class="case-metrics">
+        <div>
+          <div class="case-metric-val">€3.2M</div>
+          <div class="case-metric-label">Raised</div>
+        </div>
+        <div>
+          <div class="case-metric-val">6 mo</div>
+          <div class="case-metric-label">Engagement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <span class="section-tag reveal">Pricing</span>
+  <h2 class="section-title reveal">Transparent rates</h2>
+  <p class="section-sub reveal">All engagements start with a free 30-min discovery call.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal reveal-delay-1">
+      <div class="pricing-plan">One-off</div>
+      <div class="pricing-price">From €800 <span>/ project</span></div>
+      <p class="pricing-desc">Scoped deliverables with a fixed price and clear timeline. No hourly tracking, no surprises.</p>
+      <ul class="pricing-features">
+        <li>Investment memo or one-pager — from €400</li>
+        <li>Deep-dive company analysis — from €800</li>
+        <li>Sector market report — from €700</li>
+        <li>Pitch deck financial section — from €1,000</li>
+        <li>50% upfront, 50% on delivery</li>
+        <li>1 round of revisions included</li>
+      </ul>
+      <a href="#contact" class="btn-outline">Get a quote</a>
+    </div>
+    <div class="pricing-card featured reveal reveal-delay-2">
+      <div class="pricing-badge">Most popular</div>
+      <div class="pricing-plan">Retainer</div>
+      <div class="pricing-price">€1,500 <span>/ month</span></div>
+      <p class="pricing-desc">8–15h/month of dedicated analyst capacity. The most efficient way to work together on an ongoing basis.</p>
+      <ul class="pricing-features">
+        <li>Priority turnaround on all requests</li>
+        <li>Monthly investment memos or analyses</li>
+        <li>Async support (email / Notion / Loom)</li>
+        <li>Flexible scope — adapts to your needs</li>
+        <li>Cancel anytime, monthly billing</li>
+      </ul>
+      <a href="#contact" class="btn-outline">Book a call</a>
+    </div>
+    <div class="pricing-card reveal reveal-delay-3">
+      <div class="pricing-plan">Full mandate</div>
+      <div class="pricing-price">From €1,800 <span>/ project</span></div>
+      <p class="pricing-desc">For complex, multi-deliverable mandates — business plans, full due diligence, or fundraising support.</p>
+      <ul class="pricing-features">
+        <li>Business plan + financial model — from €1,800</li>
+        <li>Real estate due diligence — from €1,200</li>
+        <li>Full investor pitch deck — from €1,000</li>
+        <li>Pre-financing DD (NDA) — on request</li>
+        <li>Tailored scope & timeline</li>
+      </ul>
+      <a href="#contact" class="btn-outline">Let's discuss</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="section-tag reveal">Contact</span>
+  <h2 class="section-title reveal">Let's work together</h2>
+  <p class="section-sub reveal">Book a free 30-min discovery call or send a message. I typically respond within 24h.</p>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info-item reveal reveal-delay-1">
+        <div class="contact-info-icon">✉️</div>
+        <div>
+          <div class="contact-info-label">Email</div>
+          <div class="contact-info-val">contact@victorlebreton.com</div>
+        </div>
+      </div>
+      <div class="contact-info-item reveal reveal-delay-2">
+        <div class="contact-info-icon">📍</div>
+        <div>
+          <div class="contact-info-label">Location</div>
+          <div class="contact-info-val">Paris, France — Remote worldwide</div>
+        </div>
+      </div>
+      <div class="contact-info-item reveal reveal-delay-3">
+        <div class="contact-info-icon">🔗</div>
+        <div>
+          <div class="contact-info-label">LinkedIn</div>
+          <div class="contact-info-val">linkedin.com/in/victorlebreton</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-4" style="margin-top:2rem;">
+        <!-- Calendly inline widget -->
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/v-lebreton-pro/30min?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=0f1c30&text_color=f0ede8&primary_color=c9a84c" style="min-width:280px;height:630px;border-radius:4px;overflow:hidden;"></div>
+      </div>
+    </div>
+    <form class="reveal reveal-delay-2" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First name</label>
+          <input type="text" placeholder="John" required />
+        </div>
+        <div class="form-group">
+          <label>Last name</label>
+          <input type="text" placeholder="Smith" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="john@company.com" required />
+      </div>
+      <div class="form-group">
+        <label>Company / Context</label>
+        <input type="text" placeholder="Startup, advisory firm, individual..." />
+      </div>
+      <div class="form-group">
+        <label>Service</label>
+        <select>
+          <option value="">Select a service...</option>
+          <option>Investment Memo / One-Pager</option>
+          <option>Deep-Dive Company Analysis</option>
+          <option>Financial Model + Business Plan</option>
+          <option>Pitch Deck — Financial Narrative</option>
+          <option>Real Estate Due Diligence</option>
+          <option>Sector Market Report</option>
+          <option>Monthly Retainer</option>
+          <option>Other / Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell me about your project and what you need..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Victor Le Breton</div>
+  <div class="footer-copy">© 2026 — victorlebreton.com</div>
+  <div class="footer-links">
+    <a href="#hero">Top</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Make hero visible immediately
+  document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.padding = window.scrollY > 40 ? '1rem 5vw' : '1.4rem 5vw';
+  });
+
+  // Form submit placeholder
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '✓ Message sent!';
+    btn.style.background = '#2d6a4f';
+    setTimeout(() => { btn.textContent = 'Send message →'; btn.style.background = ''; e.target.reset(); }, 3000);
+  }
+</script>
+</body>
+</html>
