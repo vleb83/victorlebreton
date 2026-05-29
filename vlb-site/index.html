@@ -135,22 +135,15 @@
 
     /* HERO PHOTO */
     .hero-photo-wrap {
-      display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: center; justify-content: flex-start;
       height: 100%;
+      padding-left: 1rem;
     }
-    .hero-photo-frame {
-      width: 100%; max-width: 400px;
-      height: 560px;
-      background: var(--stone);
-      border-radius: 3px;
-      overflow: hidden;
-      display: flex; align-items: flex-end; justify-content: center;
-    }
-    .hero-photo-frame img {
-      width: 88%;
+    .hero-photo-wrap img {
+      width: 100%; max-width: 480px;
+      height: auto;
       display: block;
-      object-fit: contain;
-      object-position: bottom center;
+      mix-blend-mode: multiply;
     }
 
     /* SECTION BASE */
@@ -366,9 +359,7 @@
     </div>
   </div>
   <div class="hero-photo-wrap">
-    <div class="hero-photo-frame">
-      <img src="./picpro.png" alt="Victor Le Breton" />
-    </div>
+    <img src="./picpro2.png" alt="Victor Le Breton" />
   </div>
 </section>
 
