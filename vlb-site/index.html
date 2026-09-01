@@ -74,6 +74,16 @@
     .section-sub { font-size: .95rem; color: var(--ink-light); max-width: 480px; font-weight: 300; line-height: 1.75; }
     .divider { width: 40px; height: 1px; background: var(--ink); margin: 2rem 0; }
 
+    .hero-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); transition: border-color .2s; }
+    .hero-link:hover { border-color: var(--accent); }
+
+    .hero-proof { display: flex; align-items: baseline; gap: .9rem; margin-top: 2.4rem; padding: 1.1rem 1.4rem; border: 1px solid var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 3px; background: var(--accent-soft); text-decoration: none; max-width: 560px; flex-wrap: wrap; transition: border-color .2s, background .2s; }
+    .hero-proof:hover { border-color: var(--accent); }
+    .hero-proof-big { font-family: var(--font-display); font-size: 1.7rem; color: var(--accent); line-height: 1; white-space: nowrap; }
+    .hero-proof-text { font-size: .9rem; color: var(--ink-mid); font-weight: 300; line-height: 1.5; }
+    .hero-proof-text strong { color: var(--ink); font-weight: 500; }
+    @media (max-width: 720px) { }
+
     #about { background: var(--off); }
     .about-text p { color: var(--ink-mid); margin-bottom: 1.3rem; font-weight: 300; font-size: .97rem; line-height: 1.85; }
     .about-text p strong { color: var(--ink); font-weight: 500; }
@@ -118,7 +128,7 @@
     .article-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: .9rem; gap: 1rem; }
     .article-client { font-size: .7rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
     .article-open { font-size: .72rem; color: var(--ink-light); white-space: nowrap; }
-    .article-title { font-family: var(--font-display); font-size: 1.12rem; color: var(--ink); font-weight: 400; line-height: 1.3; margin-bottom: .6rem; }
+    .article-title { font-family: var(--font-display); font-size: 1.12rem; color: var(--ink); font-weight: 400; line-height: 1.3; margin-bottom: 0; }
     .article-desc { font-size: .84rem; color: var(--ink-light); font-weight: 300; line-height: 1.7; margin-top: auto; }
     @media (max-width: 980px) { .article-grid { grid-template-columns: 1fr; } }
 
@@ -187,12 +197,15 @@
       <li>Real estate fund analyst who writes — deep dives, investment explainers and market pieces</li>
       <li>SEO-optimised, sourced, and accurate on the numbers, not just the keywords</li>
       <li>Finance, investment and real estate — from DCF and free cash flow to interest rates and property markets</li>
-      <li>5.0 rating over 84 reviews and 96 orders delivered on Fiverr, with repeat clients</li>
     </ul>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Commission an article</a>
       <a href="#cases" class="btn-secondary">Read samples</a>
     </div>
+    <a href="https://fr.fiverr.com/victorlebret252/produce-accurate-seo-articles-for-you-french-and-english" target="_blank" rel="noopener" class="hero-proof">
+      <span class="hero-proof-big">100+ projects</span>
+      <span class="hero-proof-text">delivered for <strong>dozens of happy, repeat clients</strong> — see the reviews on Fiverr &#8599;</span>
+    </a>
   </div>
   <div class="hero-photo-wrap">
     <img src="./victor.png" alt="Victor Le Breton" />
@@ -211,7 +224,7 @@
       Most finance content is written by generalists who don't understand a DCF, a free cash flow bridge, or why an interest-rate move ripples through valuations. I do. That means <strong>SEO-optimised content that is also correct</strong> — sourced, accurate on the numbers, and credible to a reader who actually knows the subject.
     </p>
     <p class="reveal reveal-delay-3">
-      Over 96 orders and 84 five-star reviews on Fiverr, I've written company deep dives, investment explainers, and market pieces for finance blogs, newsletters, fintech and proptech clients across the UK, Germany and beyond — many of them repeat, ongoing collaborations. Every sample below is real, published work.
+      Across <a href="https://fr.fiverr.com/victorlebret252/produce-accurate-seo-articles-for-you-french-and-english" target="_blank" rel="noopener" class="hero-link">100+ projects on Fiverr &#8599;</a>, working with dozens of happy, repeat clients, I've written company deep dives, investment explainers, and market pieces for finance blogs, newsletters, fintech and proptech clients across the UK, Germany and beyond. Every sample below is real, published work.
     </p>
     <div class="skills-grid reveal reveal-delay-4">
       <span class="skill-tag">Finance Writing</span>
@@ -279,27 +292,22 @@
       <a class="article-card" href="./samples/deepdive-apollo-global-management.pdf" target="_blank">
         <div class="article-meta"><span class="article-client">Deep Dive #4 · Apollo</span><span class="article-open">Open PDF &#8599;</span></div>
         <h3 class="article-title">Apollo Global Management: Navigating the Alternative Investment Landscape</h3>
-        <p class="article-desc">$512.8B AUM, the Sony Music move, fee-related earnings, P/E and TSR versus peers — a full investment read on $APO.</p>
       </a>
       <a class="article-card" href="./samples/deepdive-starbucks.pdf" target="_blank">
         <div class="article-meta"><span class="article-client">Deep Dive #8 · Starbucks</span><span class="article-open">Open PDF &#8599;</span></div>
         <h3 class="article-title">Starbucks: A New Chapter with Brian Niccol</h3>
-        <p class="article-desc">The turnaround thesis — falling foot traffic, the new CEO's four-part plan, margins, EPS, dividend and valuation.</p>
       </a>
       <a class="article-card" href="./samples/deepdive-meta.docx" target="_blank">
         <div class="article-meta"><span class="article-client">Deep Dive #7 · Meta</span><span class="article-open">Open DOCX &#8599;</span></div>
         <h3 class="article-title">Meta Platforms: A Powerhouse Investment Opportunity</h3>
-        <p class="article-desc">3.2bn daily users, the digital-advertising engine, Q2 financials and where the growth comes from next.</p>
       </a>
       <a class="article-card" href="./samples/deepdive-asml.docx" target="_blank">
         <div class="article-meta"><span class="article-client">Deep Dive #5 · ASML</span><span class="article-open">Open DOCX &#8599;</span></div>
         <h3 class="article-title">ASML: The Quiet Force Behind the Tech Revolution</h3>
-        <p class="article-desc">The EUV monopoly explained — photolithography, the moat, and why the whole semiconductor industry depends on it.</p>
       </a>
       <a class="article-card" href="./samples/deepdive-netflix.docx" target="_blank">
         <div class="article-meta"><span class="article-client">Deep Dive #11 · Netflix</span><span class="article-open">Open DOCX &#8599;</span></div>
         <h3 class="article-title">Netflix: A Streaming Giant That Keeps Evolving</h3>
-        <p class="article-desc">The subscription model, cultural-hit machine and the economics behind the numbers.</p>
       </a>
     </div>
   </div>
@@ -315,17 +323,14 @@
       <a class="article-card" href="./samples/insight-free-cash-flow.docx" target="_blank">
         <div class="article-meta"><span class="article-client">Insight #7 · FCF</span><span class="article-open">Open DOCX &#8599;</span></div>
         <h3 class="article-title">The Free Cash Flow Analysis</h3>
-        <p class="article-desc">What FCF really tells you, how to calculate it, and why it beats headline revenue for judging a business.</p>
       </a>
       <a class="article-card" href="./samples/insight-return-on-equity.docx" target="_blank">
         <div class="article-meta"><span class="article-client">Insight #11 · ROE</span><span class="article-open">Open DOCX &#8599;</span></div>
         <h3 class="article-title">The Analysis of Return on Equity</h3>
-        <p class="article-desc">ROE as the "bang for your buck" ratio — what it captures, where it misleads, and how to read it properly.</p>
       </a>
       <a class="article-card" href="./samples/insight-revenue-growth.docx" target="_blank">
         <div class="article-meta"><span class="article-client">Insight #5 · Growth</span><span class="article-open">Open DOCX &#8599;</span></div>
         <h3 class="article-title">The Analysis of Revenue Growth</h3>
-        <p class="article-desc">Why growth is the lifeblood of a business — and how to tell durable growth from the WeWork kind.</p>
       </a>
     </div>
   </div>
@@ -341,17 +346,14 @@
       <a class="article-card" href="./samples/fundamentals-time-value-of-money-npv.pdf" target="_blank">
         <div class="article-meta"><span class="article-client">Article #15 · TVM</span><span class="article-open">Open PDF &#8599;</span></div>
         <h3 class="article-title">Time Value of Money &amp; Net Present Value</h3>
-        <p class="article-desc">Capitalisation, discounting and NPV worked from first principles, with the maths made intuitive.</p>
       </a>
       <a class="article-card" href="./samples/fundamentals-required-rate-of-return.pdf" target="_blank">
         <div class="article-meta"><span class="article-client">Article #18 · CAPM</span><span class="article-open">Open PDF &#8599;</span></div>
         <h3 class="article-title">The Required Rate of Return</h3>
-        <p class="article-desc">CAPM, beta, the equity risk premium — plus the model's limits, APT and Fama-French.</p>
       </a>
       <a class="article-card" href="./samples/fundamentals-options.pdf" target="_blank">
         <div class="article-meta"><span class="article-client">Article #22 · Options</span><span class="article-open">Open PDF &#8599;</span></div>
         <h3 class="article-title">Options</h3>
-        <p class="article-desc">Calls, puts, premiums and strategy — speculation and hedging explained with worked examples.</p>
       </a>
     </div>
   </div>
@@ -367,12 +369,10 @@
       <a class="article-card" href="./samples/realestate-florida-waterfront-guide.pdf" target="_blank">
         <div class="article-meta"><span class="article-client">Client · SEO Real Estate</span><span class="article-open">Open PDF &#8599;</span></div>
         <h3 class="article-title">A Guide to Buying Luxury Waterfront Properties in Florida</h3>
-        <p class="article-desc">SEO-led buyer guide — Palm Beach to Tampa Bay, zoning, insurance and appreciation, with keyword-rich structure.</p>
       </a>
       <a class="article-card" href="./samples/macro-ripple-effect-interest-rates.pdf" target="_blank">
         <div class="article-meta"><span class="article-client">Client · Macro</span><span class="article-open">Open PDF &#8599;</span></div>
         <h3 class="article-title">The Ripple Effect: How Shifts in Interest Rates Impact the Economy</h3>
-        <p class="article-desc">Macro and micro effects of rate moves — consumption, inflation, employment, savings and real estate.</p>
       </a>
     </div>
   </div>
@@ -388,7 +388,6 @@
       <a class="article-card" href="./samples/whitepaper-project-ned-financial-engineering.pdf" target="_blank">
         <div class="article-meta"><span class="article-client">Client · Project NED</span><span class="article-open">Open PDF &#8599;</span></div>
         <h3 class="article-title">The Role of Financial Engineering in Rapid &amp; Sustainable Growth</h3>
-        <p class="article-desc">A 16-page commissioned whitepaper — capital structure, modelling, valuation and exit, with case studies and sources.</p>
       </a>
     </div>
   </div>
