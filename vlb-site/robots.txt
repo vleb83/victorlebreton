@@ -1,0 +1,21 @@
+# Rankfolio: search engines and AI assistants are welcome.
+User-agent: *
+Allow: /
+Disallow: /samples/
+
+# AI crawlers, explicitly allowed so we can be cited
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+Allow: /
+Disallow: /samples/
+
+Sitemap: https://rankfolio.io/sitemap.xml
